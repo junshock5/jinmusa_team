@@ -20,9 +20,19 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="/posts/new">Login</a>
+          <% if user_signed_in? %>
+           <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#"><%=current_user.email%></a>
+           </li>
+             <li class="nav-item">
+             <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "nav-link js-scroll-trigger" %>
             </li>
+          <% else %>
+             <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="/users/sign_in">Login</a>
+            </li>
+          <% end %>
+
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#about">About</a>
             </li>
