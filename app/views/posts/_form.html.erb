@@ -11,17 +11,77 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
+  <div id="map" style="width:100%;height:350px;"></div>
+  <p><em>지도를 클릭해서 좌표를 얻어내세요!</em></p>
 
+
+ <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :post_title %>
+  </div>
+ 
   <div class="field">
-    <%= form.label :body %>
-    <%= form.text_area :body %>
+    <%= form.label :content %>
+    <%= form.text_area :content, id: :post_content %>
+  </div>
+  
+   <div class="field">
+    <%= form.label :"지도 X축" %>
+    <%= form.text_area :lat, id: :lat, readonly: "readonly", rows: 1 %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :"지도 Y축" %>
+    <%= form.text_area :lng, id: :lng, readonly: "readonly", rows: 1  %>
   </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+
+
+<script>
+function func1() {
+console.log(location.toString(), location.href);
+}
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = { 
+        <% if @post.lat == nil %>
+            center: new daum.maps.LatLng(37.411368205075355, 127.12877009101574), // 최초 글 작성 시 지도의 중심좌표
+        <% else %>
+            center: new daum.maps.LatLng(<%= @post.lat %>, <%= @post.lng %>), // 수정 시 보여지는 위치
+        <% end %>
+        level: 2 // 지도의 확대 레벨
+    };
+ 
+var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+ 
+// 지도를 클릭한 위치에 표출할 마커입니다
+var marker = new daum.maps.Marker({ 
+    // 지도 중심좌표에 마커를 생성합니다 
+    position: map.getCenter() 
+}); 
+// 지도에 마커를 표시합니다
+marker.setMap(map);
+ 
+// 지도에 클릭 이벤트를 등록합니다
+// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+daum.maps.event.addListener(map, 'click', function(mouseEvent) {        
+    
+    // 클릭한 위도, 경도 정보를 가져옵니다 
+    var latlng = mouseEvent.latLng; 
+    
+    // 마커 위치를 클릭한 위치로 옮깁니다
+    marker.setPosition(latlng);
+    
+    // X축 좌표값을 얻어냄 
+    var map_x = document.getElementById('lat'); 
+    map_x.innerHTML = latlng.getLat();
+    
+    // Y축 좌표값을 얻어냄
+    var map_y = document.getElementById('lng'); 
+    map_y.innerHTML = latlng.getLng();
+    
+});
+</script>

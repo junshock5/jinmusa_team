@@ -6,8 +6,18 @@
 </p>
 
 <p>
-  <strong>Body:</strong>
-  <%= @post.body %>
+  <strong>Content:</strong>
+  <%= @post.content %>
+</p>
+
+<p>
+  <strong>x:</strong>
+  <%= @post.lat %>
+</p>
+
+<p>
+  <strong>y:</strong>
+  <%= @post.lng %>
 </p>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
