@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   
   get 'conversations/conversated'
   
+  mount ActionCable.server => '/cable'
+
   root 'grayscale#index'
   #root 'home#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
