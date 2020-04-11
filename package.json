@@ -1,5 +1,7 @@
 {
   "name": "grayscale",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "redis": "^3.0.2"
+  }
 }

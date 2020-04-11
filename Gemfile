@@ -65,3 +65,4 @@ gem 'devise'
 gem 'rails_db', '2.3.1'
 
 gem "acts-as-taggable-on", "~> 5.0"
+gem 'redis', '~> 4.0'
