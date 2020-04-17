@@ -10,9 +10,11 @@ Rails.application.routes.draw do
     end
     resources :messages, only: [:create]
   end
+  
 
   get 'homes/index'
   get 'grayscale/index'
+  get 'grayscale/crawling'
   
   
   get 'posts/index'
