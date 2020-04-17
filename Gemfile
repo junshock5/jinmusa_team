@@ -69,3 +69,4 @@ gem 'redis', '~> 4.0'
 
 gem 'mechanize'
 gem 'nokogiri'
+gem 'whenever'
