@@ -20,7 +20,18 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-
+          <% if user_signed_in? %>
+           <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#"><%=current_user.email%>님 반갑습니다.</a>
+           </li>
+             <li class="nav-item">
+             <%= link_to '로그아웃', destroy_user_session_path, method: :delete, class: "nav-link js-scroll-trigger" %>
+            </li>
+          <% else %>
+             <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="/users/sign_in">로그인</a>
+            </li>
+          <% end %>
 
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#about">진무사</a>

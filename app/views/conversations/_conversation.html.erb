@@ -1,0 +1,24 @@
+<li style="list-style-type: none;">
+    <div class="panel panel-default" data-conversation-id="<%= conversation.id %>">
+  
+        <div class="panel-heading">
+            <h3 class="panel-title">대화상대 아이디</h3>
+        </div>
+        <div class="panel-heading">
+            <%= link_to conversation.opposed_user(user) != nil ? conversation.opposed_user(user).email : "알 수 없음", '', class: 'toggle-window', style: "text-decoration: none" %>
+            <%= link_to "x", close_conversation_path(conversation), class: "btn btn-default btn-xs pull-right", remote: true, method: :post %>
+        </div>
+        
+        <div class="panel-body" style="display: none;">
+            <div class="messages-list">
+                <ul>
+                    <%= render 'conversations/conversation_content', messages: conversation.messages, user: user %>
+                </ul>
+            </div>
+            <%= form_for [conversation, conversation.messages.new], remote: true do |f| %>
+                <%= f.text_area :body, class: "form-control" %>
+                <%= f.submit "전송", class: "btn btn-success" %>
+            <% end %>
+        </div>
+    </div>
+</li>
