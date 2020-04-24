@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   get 'conversations/create'
   
   get 'conversations/conversated'
-  
+  get 'game/javascript_car'
   mount ActionCable.server => '/cable'
 
   root 'grayscale#index'
