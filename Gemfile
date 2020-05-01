@@ -72,4 +72,5 @@ gem 'mechanize'
 gem 'nokogiri'
 gem 'whenever'
 
-
+gem 'pg'
+gem 'carrierwave'

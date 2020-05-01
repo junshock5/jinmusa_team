@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :videos
   devise_for :users
   resources :posts
   #devise_for :users
@@ -27,7 +28,8 @@ Rails.application.routes.draw do
   get 'conversations/create'
   
   get 'conversations/conversated'
-  
+  get 'game/javascript_car'
+  get 'users/sign_in'
   mount ActionCable.server => '/cable'
 
   root 'grayscale#index'
