@@ -1,5 +1,30 @@
-<h1>도장 위치 저장 페이지</h1>
+<title>
+    도장 정보 등록 페이지
+</title>
 
-<%= render 'form', post: @post %>
+<body>
+
+    <h1><b>도장 정보 등록 페이지</b></h1>
+    
+    <h3>당신의 도장 정보를 입력해주세요!</h3>
+    <br><br>
+             <%= render 'form', post: @post %>
+             
+          <% if user_signed_in? %>
+           <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#"><%=current_user.email%>님 반갑습니다.</a>
+           </li>
+             <li class="nav-item">
+
+             <%= link_to '로그아웃', destroy_user_session_path, method: :delete, class: "nav-link js-scroll-trigger" %>
+            </li>
+          <% else %>
+             <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="/users/sign_in">로그인</a>
+            </li>
+          <% end %>
+  
+
+</body>
 
 <%= link_to 'Back', posts_path %>

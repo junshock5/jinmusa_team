@@ -1,24 +1,75 @@
-<p id="notice"><%= notice %></p>
+ <Title>
+    <%= @post.title %> 도장 정보 | Jinmusa
+ </Title>
+ 
+ <head>
+   <h1><%= @post.title %> </h1>
+ </head>
+ 
+ <body>
+   
+      <p>
+        <strong>사진:</strong>
+        <%= image_tag @post.image %>
+      </p>
+    
+      <p>
+        <strong>이름:</strong>
+        <%= @post.title %>
+      </p>
+      
+      <p>
+        <strong>설명:</strong>
+        <%= @post.content %>
+      </p>
+      
+      <p>
+        <strong>전화번호:</strong>
+        <%= @post.call %>
+      </p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+      <p>
+        <strong>♡ 관심도장등록</strong>
+      </p>
+      
+      <p>
+        <strong>문의하기</strong>
+      </p>
+      
+      <p>
+        <strong>강사진 소개:</strong>
+        <%= @post.teacher %>
+      </p>
+      
+        <p>
+          <strong>시간표 및 요금:</strong>
+          <%= image_tag @post.timetable %>
+        </p>
 
-<p>
-  <strong>Content:</strong>
-  <%= @post.content %>
-</p>
 
-<p>
-  <strong>x:</strong>
-  <%= @post.lat %>
-</p>
+      <div class="map_wrap">
+          <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+          <div class="hAddr">
+              <strong><span class="title">도장 위치</span></strong>
+              <span id="centerAddr"></span>
+          </div>
+      </div>
 
-<p>
-  <strong>y:</strong>
-  <%= @post.lng %>
-</p>
+      <p>
+        <strong>x:</strong>
+        <%= @post.lat %>
+      </p>
+      
+      <p>
+        <strong>y:</strong>
+        <%= @post.lng %>
+      </p>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
+      
+
+
+     
+ </body>
+ 
+<%= link_to 'Edit', edit_post_path(@post) %> 
 <%= link_to 'Back', posts_path %>
