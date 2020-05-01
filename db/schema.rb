@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_17_153029) do
+ActiveRecord::Schema.define(version: 2020_05_01_031024) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer "recipient_id"
@@ -59,6 +59,13 @@ ActiveRecord::Schema.define(version: 2020_04_17_153029) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "videos", force: :cascade do |t|
+    t.string "title"
+    t.string "file"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
