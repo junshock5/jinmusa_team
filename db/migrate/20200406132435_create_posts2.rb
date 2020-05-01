@@ -3,8 +3,9 @@ class CreatePosts2 < ActiveRecord::Migration[5.2]
     create_table :posts do |t|
       t.string :title
       t.text :content
-      t.float :lat
+      t.float :lats
       t.float :lng
+
 
       t.timestamps
       end

@@ -18,9 +18,11 @@ Rails.application.routes.draw do
   get 'grayscale/index'
   get 'grayscale/crawling'
   
-  
+  get 'posts' => 'posts#index'
   get 'posts/index'
   get 'posts/new'
+  get 'posts/show'
+  #get 'posts/:id' => 'posts#show'
   
   get 'messages/create'
   get 'conversations/create'
@@ -31,6 +33,8 @@ Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
 
   root 'grayscale#index'
+  
+  root 'posts#index'
   #root 'home#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
