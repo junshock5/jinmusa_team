@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   
 
   get 'homes/index'
+  get 'grayscale/paging'
   get 'grayscale/index'
   get 'grayscale/crawling'
   

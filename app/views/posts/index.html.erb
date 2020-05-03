@@ -30,20 +30,17 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-
   <tbody>
-  <% if @court !=nil %>
-    <% @court.each do |post| %>
+    <% @posts.each do |post| %>
       <tr>
-        <td><%= post.title %>이름</td>
-        <td><%= post.content %>간단 설명</td>
+          <%= post.CourtSubIntro %>
+        <td><%= post.CourtName %>이름</td>
+        <td><%= post.CourtSubIntro %>간단 설명</td>
         <td><%= link_to 'Show', post %></td>
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
         <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
-  <% else %>
-  <% end %>
   </tbody>
 </table>
 
@@ -93,8 +90,8 @@ var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니�
  
 // 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다 
 var positions = [
-      <% if @court !=nil %>
-    <% @court.each do |x| %>
+      <% if @post !=nil %>
+    <% @post.each do |x| %>
     {
         content: '<div><%= x.title %></div>', 
         latlng: new daum.maps.LatLng(<%= x.lat %>, <%= x.lng %>)

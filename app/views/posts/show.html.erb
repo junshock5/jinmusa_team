@@ -10,22 +10,23 @@
    
       <p>
         <strong>사진:</strong>
-        <%= image_tag @post.ImageId %>
+       <% if @post.ImageId !=nil %> 
+       <%= image_tag @post.ImageId %> 
+       <% end %>
       </p>
     
       <p>
         <strong>이름:</strong>
-        <%= @post.title %>
       </p>
       
       <p>
         <strong>설명:</strong>
-        <%= @post.CountIntro %>
+        
+         
       </p>
       
       <p>
         <strong>전화번호:</strong>
-        <%= @post.CourtSubIntro %>
       </p>
 
       <p>
@@ -38,12 +39,10 @@
       
       <p>
         <strong>강사진 소개:</strong>
-        <%= @post.CourtSubIntro %>
       </p>
       
         <p>
           <strong>시간표 및 요금:</strong>
-          <%= image_tag @post.TimeTableId %>
         </p>
 
 

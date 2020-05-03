@@ -1,24 +1,24 @@
 <%= form_with(model: post, local: true) do |form| %>
 
   <h4>도장 <b>기본 정보</b> 등록하기</h4>
-    <div class="field">
+    <div class="field1">
       <%= form.label :"이름" %>
-      <%= form.text_field :title, id: :CourtName %>
+      <%= form.text_field :CourtName, id: :CourtName %>
     </div>
    
-    <div class="field">
+    <div class="field2">
       <%= form.label :"설명" %>
-      <%= form.text_area :content, id: :CourtIntro %>
+      <%= form.text_area :CountIntro, id: :CountIntro %>
     </div>
     
-    <div class="field">
+    <div class="field3">
       <%= form.label :"전화번호 & 강사진 소개 & 주소" %>
       <%= form.text_area :CourtSubIntro, id: :CourtSubIntro %>
     </div>
     
     <div class="field">
       <%= form.label :image %>
-      <%= form.file_field :image, id: :ImageId %> 
+      <%= form.file_field :ImageId, id: :ImageId %> 
     </div>
   <br><br>
   
@@ -46,7 +46,7 @@
     
     <div class="field">
       <%= form.label :timetable %>
-      <%= form.file_field :timetable, id: :TimeTableId %> 
+      <%= form.file_field :TimeTableId, id: :TimeTableId %> 
 
     </div>
     <br><br>
