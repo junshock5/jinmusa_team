@@ -1,44 +1,30 @@
 <%= form_with(model: post, local: true) do |form| %>
-  <% if post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
-      <ul>
-      <% post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <h4>도장 <b>기본 정보</b> 등록하기</h4>
     <div class="field">
       <%= form.label :"이름" %>
-      <%= form.text_field :title, id: :post_title %>
+      <%= form.text_field :title, id: :CourtName %>
     </div>
    
     <div class="field">
       <%= form.label :"설명" %>
-      <%= form.text_area :content, id: :post_content %>
+      <%= form.text_area :content, id: :CourtIntro %>
     </div>
     
     <div class="field">
-      <%= form.label :"전화번호" %>
-      <%= form.text_area :call, id: :post_call %>
+      <%= form.label :"전화번호 & 강사진 소개 & 주소" %>
+      <%= form.text_area :CourtSubIntro, id: :CourtSubIntro %>
     </div>
     
     <div class="field">
       <%= form.label :image %>
-      <%= form.file_field :image, id: :post_image %> 
+      <%= form.file_field :image, id: :ImageId %> 
     </div>
   <br><br>
   
   <h4>도장 <b>위치</b> 등록하기</h4>
   
-     <div class="field">
-      <%= form.label :"주소" %>
-      <%= form.text_area :address, id: :post_address %>
-    </div>
+
     
     <div id="map" style="width:100%;height:350px;"></div>
     <p><em>지도를 클릭해서 정확한 좌표를 얻어내세요!</em></p>
@@ -56,14 +42,11 @@
   
   <h4>도장 <b>상세 정보</b> 등록하기</h4>
   
-    <div class="field">
-      <%= form.label :"강사진 소개" %>
-      <%= form.text_area :teacher, id: :post_teacher %>
-    </div>
+
     
     <div class="field">
       <%= form.label :timetable %>
-      <%= form.file_field :timetable, id: :post_timetable %> 
+      <%= form.file_field :timetable, id: :TimeTableId %> 
 
     </div>
     <br><br>

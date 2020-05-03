@@ -1,16 +1,16 @@
  <Title>
-    <%= @post.title %> 도장 정보 | Jinmusa
+    도장 정보 | Jinmusa
  </Title>
  
  <head>
-   <h1><%= @post.title %> </h1>
+   <h1><%= @post.CourtName %> </h1>
  </head>
  
  <body>
    
       <p>
         <strong>사진:</strong>
-        <%= image_tag @post.image %>
+        <%= image_tag @post.ImageId %>
       </p>
     
       <p>
@@ -20,12 +20,12 @@
       
       <p>
         <strong>설명:</strong>
-        <%= @post.content %>
+        <%= @post.CountIntro %>
       </p>
       
       <p>
         <strong>전화번호:</strong>
-        <%= @post.call %>
+        <%= @post.CourtSubIntro %>
       </p>
 
       <p>
@@ -38,12 +38,12 @@
       
       <p>
         <strong>강사진 소개:</strong>
-        <%= @post.teacher %>
+        <%= @post.CourtSubIntro %>
       </p>
       
         <p>
           <strong>시간표 및 요금:</strong>
-          <%= image_tag @post.timetable %>
+          <%= image_tag @post.TimeTableId %>
         </p>
 
 
