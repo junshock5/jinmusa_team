@@ -32,8 +32,8 @@
   </thead>
 
   <tbody>
-  <% if @posts !=nil %>
-    <% @posts.each do |post| %>
+  <% if @court !=nil %>
+    <% @court.each do |post| %>
       <tr>
         <td><%= post.title %>이름</td>
         <td><%= post.content %>간단 설명</td>
@@ -93,11 +93,13 @@ var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니�
  
 // 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다 
 var positions = [
-    <% @posts.each do |x| %>
+      <% if @court !=nil %>
+    <% @court.each do |x| %>
     {
         content: '<div><%= x.title %></div>', 
         latlng: new daum.maps.LatLng(<%= x.lat %>, <%= x.lng %>)
     },
+    <% end %>
     <% end %>
 ];
  

@@ -10,8 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 2020_05_01_061936) do
+
+  create_table "Posts", force: :cascade do |t|
+    t.integer "CourtCategoryId"
+    t.string "CourtName"
+    t.string "CountIntro"
+    t.string "CourtSubIntro"
+    t.datetime "Created"
+    t.datetime "Updated"
+    t.integer "UserId"
+    t.integer "ImageId"
+    t.integer "TimeTableId"
+    t.string "file"
+    t.integer "lat"
+    t.integer "lng"
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -60,14 +74,6 @@ ActiveRecord::Schema.define(version: 2020_05_01_061936) do
     t.datetime "updated_at", null: false
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
-  end
-
-# Could not dump table "posts" because of following StandardError
-#   Unknown type 'image' for column 'image'
-
-  create_table "profiles", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
