@@ -6,8 +6,27 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    #@posts = Post.all
-    @posts = Post.paginate(page: params[:page], per_page:5)
+    uri    = URI.parse(request.url)   
+    params2 = CGI.parse(uri.query)
+    @searchText = params2['searchtext'].first
+
+    
+    if( @searchText != '')
+      @posts = Post.where(:CourtName => @searchText).paginate(page: params[:page], per_page:5)
+    else
+      @posts = Post.paginate(page: params[:page], per_page:5)
+         
+    end
+
+
+# paginate in Active Record now returns a Relation
+#Post.where(:published => true).paginate(:page => params[:page]).order('id DESC')
+
+# the new, shorter page() method
+#Post.order('created_at DESC').page(params[:page])
+
+
+
   end
   
   def paging
