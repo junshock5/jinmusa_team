@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 2020_05_01_061936) do
     t.integer "ImageId"
     t.integer "TimeTableId"
     t.string "file"
-    t.integer "lat"
-    t.integer "lng"
+    t.float "lat"
+    t.float "lng"
   end
 
   create_table "active_storage_attachments", force: :cascade do |t|

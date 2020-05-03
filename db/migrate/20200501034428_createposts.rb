@@ -11,8 +11,8 @@ class Createposts < ActiveRecord::Migration[5.2]
       t.integer :ImageId
       t.integer :TimeTableId
       t.string :file
-      t.integer :lat
-      t.integer :lng 
+      t.float :lat
+      t.float :lng 
      end 
   end
     
