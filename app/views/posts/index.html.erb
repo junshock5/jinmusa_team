@@ -49,6 +49,32 @@
 <%= link_to 'New Post', new_post_path %>
 
 
+
+<br/>
+<ul class="thumbnails col-sm-1 col-md-9">
+    <% @posts.each do |post| %>
+        <li class="span4">
+            <div class="thumbnail col-sm-1 col-md-9">
+            <img src="https://placehold.it/300x200" align="left" alt="사진없음">
+            <%= post.CourtSubIntro %>
+            <td><%= post.CourtName %>이름</td>
+            <td><%= post.CourtSubIntro %>간단 설명</td>
+            <td><%= link_to 'Show', post %></td>
+            <td><%= link_to 'Edit', edit_post_path(post) %></td>
+            <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </div>
+        </li>
+    <% end %>
+    <li class="span4">
+      <div class=" col-sm-1 col-md-9"><%= will_paginate %>
+       </div>
+    </li>
+</ul>
+
+
+
+
+
 <%# 지도 Control 영역 (제일 아래에 작성) %>
 <script>
 

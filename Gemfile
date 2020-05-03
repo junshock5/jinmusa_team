@@ -76,3 +76,4 @@ gem 'pg'
 gem 'carrierwave'
 
 gem 'will_paginate','~> 3.0'
+gem 'bootstrap-will_paginate', '0.0.10'
