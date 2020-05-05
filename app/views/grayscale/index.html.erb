@@ -97,6 +97,12 @@
             <!-- <div class="btn btn-primary mx-auto" ><%= link_to '검색', posts_path(:searchtext => "SearchText.text") %> </div> -->
             
             <button type="submit" class="btn btn-primary mx-auto" id="SearchText">검색</button>
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <button id="CategoryID1" type="button" class="btn btn-secondary">최신순</button>
+              <button id="CategoryID2" type="button" class="btn btn-secondary">거리순</button>
+              <button id="CategoryID3" type="button" class="btn btn-secondary">평점순</button>
+            </div>
+
         </div>
 
       </div>
@@ -172,9 +178,18 @@
     <script>
     
     $(function(){
+        var CategoryID=0;
       $('#SearchText').click(function(){
-        window.location = '/posts?searchtext=' + $('#SearchInput').val()
-        
+        window.location = '/posts?searchtext=' + $('#SearchInput').val()+'&CategoryID='+CategoryID;
+      })
+      $('#CategoryID1').click(function(){
+        CategoryID=1;
+      })
+      $('#CategoryID2').click(function(){
+        CategoryID=2;
+      })
+      $('#CategoryID3').click(function(){
+        CategoryID=3;
       })
     })
     </script>

@@ -10,6 +10,7 @@ class PostsController < ApplicationController
     params2 = CGI.parse(uri.query)
     @searchText = params2['searchtext'].first
 
+    @categoryID = params2['searchtext'].second
     
     if( @searchText != '')
       @posts = Post.where(:CourtName => @searchText).paginate(page: params[:page], per_page:5)

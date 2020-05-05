@@ -25,7 +25,7 @@
         <li class="span4">
             <div class="thumbnail col-sm-1 col-md-9">
             <%if post.image !=nil %>
-                 <%= image_tag post.image, :align=>"left" %> 
+                 <%= image_tag post.image, :align=>"left" if post.image.attached? %> 
             <% else %>
                 <img src="https://placehold.it/300x200" align="left" alt="사진없음">
             <% end %>
@@ -39,9 +39,16 @@
         </li>
     <% end %>
     <li class="span4">
-      <div class="col-sm-1 col-md-9"><%= will_paginate %></div>
+        <div class="col-sm-1 col-md-9"><%= will_paginate %></div>
+    </li>
+    <li class="span4">
         <input type="text" class="col-sm-1 col-md-9"id="SearchInput"  placeholder="도장을 검색하세요...">
-        <button type="submit" class="col-sm-1 btn btn-primary mx-auto" id="SearchText">검색</button>
+         <div class="btn-group col-sm-1 col-md-1" role="group" aria-label="Basic example">
+          <button type="submit" class="btn btn-primary mx-auto" id="SearchText">검색</button>
+          <button id="CategoryID1" type="button" class="btn btn-secondary">최신순</button>
+          <button id="CategoryID2" type="button" class="btn btn-secondary">거리순</button>
+          <button id="CategoryID3" type="button" class="btn btn-secondary">평점순</button>
+        </div>
     </li>    
 </ul>
 
@@ -51,8 +58,18 @@
 <%# 지도 Control 영역 (제일 아래에 작성) %>
 <script>
 $(function(){
+    var CategoryID=0;
   $('#SearchText').click(function(){
-    window.location = '/posts?searchtext=' + $('#SearchInput').val()
+    window.location = '/posts?searchtext=' + $('#SearchInput').val()+'&CategoryID='+CategoryID;
+  })
+  $('#CategoryID1').click(function(){
+    CategoryID=1;
+  })
+  $('#CategoryID2').click(function(){
+    CategoryID=2;
+  })
+  $('#CategoryID3').click(function(){
+    CategoryID=3;
   })
 })
 // HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
@@ -109,6 +126,12 @@ var positions = [
       <% if @posts !=nil %>
     <% @posts.each do |x| %>
     {
+        <% if x.lat !='' %>
+        <%x.lat=0;%>
+        <%end%>
+        <% if x.lng !='' %>
+        <%x.lng=0;%>
+        <%end%>
         content: '<div><%= x.CourtName %></div>', 
         latlng: new daum.maps.LatLng(<%= x.lat %>, <%= x.lng %>),
         url: '<%=x%>'
