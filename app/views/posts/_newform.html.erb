@@ -18,13 +18,10 @@
     
     <div class="field">
       <%= form.label :image %>
-      <%= form.file_field :ImageId, id: :ImageId %> 
+      <%= form.file_field :image, id: :ImageId %> 
     </div>
-  <br><br>
   
   <h4>도장 <b>위치</b> 등록하기</h4>
-  
-
     
     <div id="map" style="width:100%;height:350px;"></div>
     <p><em>지도를 클릭해서 정확한 좌표를 얻어내세요!</em></p>
@@ -47,7 +44,6 @@
     <div class="field">
       <%= form.label :timetable %>
       <%= form.file_field :TimeTableId, id: :TimeTableId %> 
-
     </div>
     <br><br>
     

@@ -12,7 +12,7 @@
         <button onclick="showMarkers()">마커 보이기</button>
     </li>
     <li class="span4">
-        <span id="loginlocation" style="font-size:1.5em;  color: white;"> 현재 접속한 위치 정보:</span>
+        <span id="loginlocation" style="font-size:1.5em;  color: white;"> 현재 접속한 위치 정보(x,y):</span>
     </li>
     <li class="span4">
         <span style="font-size:1.5em;  color: white;"> 검색어:<%= @searchText %> </span>
@@ -24,7 +24,11 @@
     <% @posts.each do |post| %>
         <li class="span4">
             <div class="thumbnail col-sm-1 col-md-9">
-            <img src="https://placehold.it/300x200" align="left" alt="사진없음">
+            <%if post.image !=nil %>
+                 <%= image_tag post.image %> 
+            <% else %>
+                <img src="https://placehold.it/300x200" align="left" alt="사진없음">
+            <% end %>
             <ul>도장명: <%= post.CourtName %></ul>
             <ul>도장간단설명: <%= post.CourtSubIntro %>간단 설명</ul>
             <ul>위치(x,y): (<%= post.lat%>,<%= post.lng%>)</ul>
@@ -64,7 +68,7 @@ if (navigator.geolocation) {
             message = '<div style="padding:5px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다
         
         // 마커와 인포윈도우를 표시합니다
-        displayMarker(locPosition, message);
+        //displayMarker(locPosition, message);
         
         document.getElementById('loginlocation').innerHTML +=locPosition;
             
@@ -75,7 +79,7 @@ if (navigator.geolocation) {
     var locPosition = new daum.maps.LatLng(33.450701, 126.570667),    
         message = 'geolocation을 사용할수 없어요..'
         
-    displayMarker(locPosition, message);
+    //displayMarker(locPosition, message);
 }
 
 
@@ -123,8 +127,9 @@ for (var i = 0; i < positions.length; i ++) {
         position: positions[i].latlng // 마커의 위치
     });
 
+
     var postid=i+1;
-    var iwContent = '<div style="padding:5px;">Hello World! <br><a id="CourtName" href="/posts/'+postid+'" style="color:blue" target="_blank">도장보기</a> <a href="#" style="color:blue" target="_blank">길찾기</a></div>';
+    var iwContent = '<div style="padding:5px;">도장명:'+positions[i].content+'<br><a id="CourtName" href="/posts/'+postid+'" style="color:blue" target="_blank">도장보기</a> <a href="#" style="color:blue" target="_blank">길찾기</a></div>';
    
     //document.getElementById("CourtName").innerText="/posts/1";
     
