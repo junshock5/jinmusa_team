@@ -10,15 +10,28 @@ class PostsController < ApplicationController
     params2 = CGI.parse(uri.query)
     @searchText = params2['searchtext'].first
 
-    @categoryID = params2['searchtext'].second
+    @categoryID = params2['CategoryID'].first
     
+    # ajax 서버에서 action에서 받고 post request 받아서 좌표를 추출 db에서 list js.erb에서 list를 
+    
+    # 확장성있게.. 어떻게 코드를 짤까...    
     if( @searchText != '')
-      @posts = Post.where(:CourtName => @searchText).paginate(page: params[:page], per_page:5)
+      @posts = Post.where(:CourtName => @searchText).paginate(page: params[:page], per_page:5).order(orderby);
     else
-      @posts = Post.paginate(page: params[:page], per_page:5)
-         
+      if( @categoryID != 0)    
+          case @categoryID
+          when '1' #최신순  
+           @posts = Post.paginate(page: params[:page], per_page:5).order('Created DESC'); 
+          when '2' #거리순
+          # 현재 내위치와 지도들의 위치 차이들을 orderby 하면된다. index페이지에서 *현재 위치정보를 알아야 한다.
+           @posts = Post.paginate(page: params[:page], per_page:5).order('Created DESC'); 
+          when '3' #평점순
+           @posts = Post.paginate(page: params[:page], per_page:5).order('Created DESC'); 
+          else
+           @posts = Post.paginate(page: params[:page], per_page:5); 
+          end
+      end
     end
-
 
 # paginate in Active Record now returns a Relation
 #Post.where(:published => true).paginate(:page => params[:page]).order('id DESC')
@@ -55,9 +68,9 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
-  
-    @post.UserId = current_user.id
+    @post = Post.new(post_params);
+    @post.Created = Time.now.getutc;
+    @post.UserId = current_user.id;
     
     respond_to do |format|
       if @post.save

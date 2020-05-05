@@ -32,6 +32,7 @@
             <ul>도장명: <%= post.CourtName %></ul>
             <ul>도장간단설명: <%= post.CourtSubIntro %>간단 설명</ul>
             <ul>위치(x,y): (<%= post.lat%>,<%= post.lng%>)</ul>
+            <ul>생성날짜: (<%= post.Created%>)</ul>
             <ul><%= link_to '보기', post %></ul>
             <ul><%= link_to '변경', edit_post_path(post) %></ul>
             <ul><%= link_to '삭제', post, method: :delete, data: { confirm: 'Are you sure?' } %></ul>

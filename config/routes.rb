@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   resources :videos
   devise_for :users
-  resources :posts
+  
+  get 'posts/paging' => 'posts#paging'
+  
+  resources :posts #scaffold url을 다정의? 
   #devise_for :users
 
 
@@ -21,9 +24,10 @@ Rails.application.routes.draw do
   #get 'posts' => 'posts#index'
   #get 'posts/index'
   get 'posts/new'
-  get 'posts/paging' => 'posts#paging'
+  get 'posts/:id' => 'posts#show'
+  
   #get 'posts/show'
-  #get 'posts/:id' => 'posts#show'
+  
   
   get 'messages/create'
   get 'conversations/create'
