@@ -25,7 +25,7 @@
         <li class="span4">
             <div class="thumbnail col-sm-1 col-md-9">
             <%if post.image !=nil %>
-                 <%= image_tag post.image %> 
+                 <%= image_tag post.image, :align=>"left" %> 
             <% else %>
                 <img src="https://placehold.it/300x200" align="left" alt="사진없음">
             <% end %>

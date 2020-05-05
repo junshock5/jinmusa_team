@@ -13,6 +13,11 @@
        <% if @post.image !=nil %> 
        <%= image_tag @post.image %> 
        <% end %>
+       
+              <% if @post.file !=nil %> 
+ <video controls width="640" height="480" src="<%= @post.file %>"></video>
+        <% end %>
+       
       </p>
     
       <p>

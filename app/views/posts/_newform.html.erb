@@ -17,10 +17,13 @@
     </div>
     
     <div class="field">
-      <%= form.label :image %>
+      <%= form.label :image_png_jpg %>
       <%= form.file_field :image, id: :ImageId %> 
     </div>
-  
+    <div class="field">
+    <%= form.label :video_mp4_avi %>
+    <%= form.file_field :file, id: :video_file %>
+  </div>
   <h4>도장 <b>위치</b> 등록하기</h4>
     
     <div id="map" style="width:100%;height:350px;"></div>
