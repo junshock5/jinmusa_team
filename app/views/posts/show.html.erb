@@ -15,7 +15,9 @@
        <% end %>
        
               <% if @post.file !=nil %> 
- <video controls width="640" height="480" src="<%= @post.file %>"></video>
+
+              <%= video_tag @post.file, :size => "320x240", :controls => true %>
+
         <% end %>
        
       </p>
