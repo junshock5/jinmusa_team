@@ -1,81 +1,59 @@
- <Title>
-    도장 정보 | Jinmusa
- </Title>
- 
- <head>
-   <h1><%= @post.CourtName %> </h1>
- </head>
- 
- <body>
-   
-      <p>
-        <strong>사진:</strong>
-       <% if @post.image !=nil %> 
-       <%= image_tag @post.image %> 
-       <% end %>
-       
-              <% if @post.file !=nil %> 
 
-              <%= video_tag @post.file, :size => "320x240", :controls => true %>
-
-        <% end %>
-       
-      </p>
-    
-      <p>
-        <strong>이름:</strong>
-      </p>
-      
-      <p>
-        <strong>설명:</strong>
-        
-         
-      </p>
-      
-      <p>
-        <strong>전화번호:</strong>
-      </p>
-
-      <p>
-        <strong>♡ 관심도장등록</strong>
-      </p>
-      
-      <p>
-        <strong>문의하기</strong>
-      </p>
-      
-      <p>
-        <strong>강사진 소개:</strong>
-      </p>
-      
-        <p>
-          <strong>시간표 및 요금:</strong>
-        </p>
-
-
-      <div class="map_wrap">
-          <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-          <div class="hAddr">
-              <strong><span class="title">도장 위치</span></strong>
-              <span id="centerAddr"></span>
-          </div>
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <div class="container">
+          <% if @post.image !=nil %> 
+                 <%= image_tag @post.image,  :style =>"height: 120px; width: 20%;  display: block;" %> 
+          <% end %>
+          <h1 class="display-3">도장명: <%= @post.CourtName %></h1>
+          <p><%= @post.CourtSubIntro %></p>
+          <p><a class="btn btn-primary btn-lg" href="#" role="button">후기쓰기</a></p>
+        </div>
       </div>
 
-      <p>
-        <strong>x:</strong>
-        <%= @post.lat %>
-      </p>
-      
-      <p>
-        <strong>y:</strong>
-        <%= @post.lng %>
-      </p>
+      <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+          <div class="col-md-4">
+            <h2>특징1</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+          </div>
+          <div class="col-md-4">
+            <h2>특징2</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+          </div>
+          <div class="col-md-4">
+            <h2>특징3</h2>
+            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+            <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+          </div>
+        </div>
+        <hr>
+      </div> <!-- /container -->
+    <div class="container">
 
-      
+<ul>
 
 
-     
- </body>
- 
-<%= link_to 'Edit', edit_post_path(@post) %> 
-<%= link_to 'Back', posts_path(:searchtext => "SearchText.text") %>
+   <!--<% if @post.file !=nil %> 
+         <%= video_tag @post.file, :size => "320x240", :controls => true %>
+       <% end %>-->
+        <li>이름:</li>
+        <li>설명:</li>
+        <li>전화번호:</li>
+        <li>♡ 관심도장등록</li>
+        <li>문의하기</li>
+        <li>강사진 소개:</li>
+        <li>시간표 및 요금:</li>
+        <li>x: <%= @post.lat %></li>
+        <li>y: <%= @post.lng %></li>
+</ul>
+    
+    </div> <!-- /container -->
+
+
+        
+<%= link_to 'Edit', edit_post_path(@post), :class => "btn btn-primary" %> 
+<%= link_to 'Back', posts_path(:searchtext => "SearchText.text"), :class => "btn btn-primary" %>

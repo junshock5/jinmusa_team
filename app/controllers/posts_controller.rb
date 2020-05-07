@@ -14,9 +14,15 @@ class PostsController < ApplicationController
     
     # ajax 서버에서 action에서 받고 post request 받아서 좌표를 추출 db에서 list js.erb에서 list를 
     
+    
+    
+    sql = " SELECT * 
+        FROM   Posts
+        WHERE  Courtname like'#{@searchText}%'";
     # 확장성있게.. 어떻게 코드를 짤까...    
-    if( @searchText != '')
-      @posts = Post.where(:CourtName => @searchText).paginate(page: params[:page], per_page:5);
+    if( @searchText != '' && @searchText !="SearchText.text")
+      # @posts = Post.where(:CourtName => @searchText).paginate(page: params[:page], per_page:5);
+          @posts =  Post.paginate_by_sql(sql,page: params[:page], per_page:5);
     else
       if( @categoryID != 0)    
           case @categoryID
