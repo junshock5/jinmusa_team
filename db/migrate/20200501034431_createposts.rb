@@ -1,4 +1,4 @@
-class Createposts < ActiveRecord::Migration[5.2]
+class Createposts  < ActiveRecord::Migration[5.2]
   def change
      create_table :Posts do |t|
       t.integer :CourtCategoryId

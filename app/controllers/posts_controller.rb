@@ -16,7 +16,7 @@ class PostsController < ApplicationController
     
     # 확장성있게.. 어떻게 코드를 짤까...    
     if( @searchText != '')
-      @posts = Post.where(:CourtName => @searchText).paginate(page: params[:page], per_page:5).order(orderby);
+      @posts = Post.where(:CourtName => @searchText).paginate(page: params[:page], per_page:5);
     else
       if( @categoryID != 0)    
           case @categoryID

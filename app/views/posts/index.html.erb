@@ -25,7 +25,8 @@
         <li class="span4">
             <div class="thumbnail col-sm-1 col-md-9">
             <%if post.image !=nil %>
-                 <%= image_tag post.image, :align=>"left" if post.image.attached? %> 
+             
+                 <%= image_tag post.image, :align=>"left", :style => "height: 70px; width: 20%;  display: block;" %> 
             <% else %>
                 <img src="https://placehold.it/300x200" align="left" alt="사진없음">
             <% end %>
@@ -52,12 +53,14 @@
         </div>
     </li>    
 </ul>
+<img class="blink-image rounded float-left" style="width:20%; height:11%" src="https://mblogthumb-phinf.pstatic.net/MjAxOTA2MTFfMjUz/MDAxNTYwMjQyMjg4Njk0.swxM6-8iKOXYXyAyinNUZTxOSPOkbYc76MQ4i1ELBDQg.XaSGE_3u9EhVOfoEG46WiI7d0ydQ61dCxJ23sXNYF9Eg.JPEG.wjdgns0253/%EB%8C%80%ED%95%99%EC%83%9D%ED%95%A0%EC%9D%B8%EC%9D%B4%EB%B2%A4%ED%8A%B8.jpg?type=w800">
 
 
 
 
 <%# 지도 Control 영역 (제일 아래에 작성) %>
 <script>
+var locPosition;
 $(function(){
     var CategoryID=0;
   $('#SearchText').click(function(){
@@ -124,18 +127,13 @@ var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니�
 
 // 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다 
 var positions = [
-      <% if @posts !=nil %>
+    <% if @posts !=nil %>
     <% @posts.each do |x| %>
     {
-        <% if x.lat !='' %>
-        <%x.lat=0;%>
-        <%end%>
-        <% if x.lng !='' %>
-        <%x.lng=0;%>
-        <%end%>
         content: '<div><%= x.CourtName %></div>', 
         latlng: new daum.maps.LatLng(<%= x.lat %>, <%= x.lng %>),
-        url: '<%=x%>'
+        url: '<%=x%>',
+        id: '<%=x.id%>'
     },
     <% end %>
     <% end %>
@@ -143,7 +141,7 @@ var positions = [
  
 // 지도에 표시된 마커 객체를 가지고 있을 배열입니다
 var markers = [];
- 
+var markerContents = [];
 for (var i = 0; i < positions.length; i ++) {
     // 마커를 생성합니다
     var marker = new daum.maps.Marker({
@@ -152,8 +150,7 @@ for (var i = 0; i < positions.length; i ++) {
     });
 
 
-    var postid=i+1;
-    var iwContent = '<div style="padding:5px;">도장명:'+positions[i].content+'<br><a id="CourtName" href="/posts/'+postid+'" style="color:blue" target="_blank">도장보기</a> <a href="#" style="color:blue" target="_blank">길찾기</a></div>';
+    var iwContent = '<div style="padding:5px;">도장명:'+positions[i].content+'<br><a id="CourtName" href="/posts/'+positions[i].id+'" style="color:blue" target="_blank">도장보기</a> <a href="#" style="color:blue" target="_blank">길찾기</a></div>';
    
     //document.getElementById("CourtName").innerText="/posts/1";
     
@@ -169,6 +166,9 @@ for (var i = 0; i < positions.length; i ++) {
     
     // 생성된 마커를 배열에 추가합니다
     markers.push(marker);
+    
+    // 생성된 마커의 상세정보를 추가합니다
+    markerContents.push(infowindow);
  
     // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
     daum.maps.event.addListener(marker, 'click2', makeClickListener(map, marker, infowindow));
@@ -229,13 +229,14 @@ function makeOutListener(infowindow) {
 // 배열에 추가된 마커들을 지도에 표시하거나 삭제하는 함수입니다
 function setMarkers(map) {
     for (var i = 0; i < markers.length; i++) {
-        markers[i].setMap(map);
+        //markers[i].setMap(map);
+        markerContents[i].setMap(map);
     }            
 }
  
 // "마커 보이기" 버튼을 클릭하면 호출되어 배열에 추가된 마커를 지도에 표시하는 함수입니다
 function showMarkers() {
-    setMarkers(map)    
+    //setMarkers(map)    
 }
  
 // "마커 감추기" 버튼을 클릭하면 호출되어 배열에 추가된 마커를 지도에서 삭제하는 함수입니다
