@@ -61,22 +61,23 @@
 
 <!-- Projects Section -->
 <section id="projects" class="projects-section bg-dark">
-  <div class="container">
-<div class="album text-muted">
-   <div class="container">
-      <div class="row bg-dark">
-         <% @posts.each do |product| %>
-         <div class="card2">
-            <%= image_tag product.image, :style => "height: 280px; width: 100%;  display: block;" , :class => "card-img-top" %>
-            <strong class="card2-text"><%= product.CourtName %></strong>
-            <p class="card2-text card-text"><%= product.Created %></p>
-            <p class="card2-text"><%= product.CourtSubIntro %></p>
-            <a href="<%= edit_post_path(product) %>" class="btn btn-primary">Go somewhere</a>
-         </div>
-         <% end %>
-      </div>
-   </div>
-</div>
+<div class="container">
+  <div class="album text-muted bg-dark" style="padding:0px;">
+     <p class="text-white display-3 blink-image text-center">진무사 추천 도장</p>
+     <div class="container">
+        <div class="row bg-dark">
+           <% @posts.each do |product| %>
+           <div class="card2">
+              <%= image_tag product.image, :style => "height: 280px; width: 100%;  display: block;" , :class => "card-img-top" %>
+              <strong class="card2-text"><%= product.CourtName %></strong>
+              <p class="card2-text card-text"><%= product.Created %></p>
+              <p class="card2-text"><%= product.CourtSubIntro %></p>
+              <a href="<%= edit_post_path(product) %>" class="btn btn-primary">Go somewhere</a>
+           </div>
+           <% end %>
+        </div>
+     </div>
+  </div>
     <!-- Project One Row -->
     <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
       <div class="col-lg-6">
