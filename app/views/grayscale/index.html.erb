@@ -72,7 +72,7 @@
               <strong class="card2-text"><%= product.CourtName %></strong>
               <p class="card2-text card-text"><%= product.Created %></p>
               <p class="card2-text"><%= product.CourtSubIntro %></p>
-              <a href="<%= edit_post_path(product) %>" class="btn btn-primary">Go somewhere</a>
+              <%= link_to 'Go somewhere', product , :class => "btn btn-primary"%>
            </div>
            <% end %>
         </div>
@@ -134,8 +134,8 @@
             
             <button type="submit" class="btn btn-primary mx-auto" id="SearchText">검색</button>
             <div class="btn-group" role="group" aria-label="Basic example">
-              <button id="CategoryID1" type="button" class="btn btn-secondary">최신순</button>
-              <button id="CategoryID2" type="button" class="btn btn-secondary">거리순</button>
+              <button id="CategoryID1" type="button" class="btn btn-success">최신순</button>
+              <button id="CategoryID2" type="button" class="btn btn-warning">거리순</button>
               <button id="CategoryID3" type="button" class="btn btn-secondary">평점순</button>
             </div>
 

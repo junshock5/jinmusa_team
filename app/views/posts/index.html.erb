@@ -1,4 +1,3 @@
-<p id="notice">지도:</p>
 <ul class="thumbnails col-sm-1 col-md-9 bg-dark" >
     <li class="span4">
         <div class="map_wrap">
@@ -18,7 +17,7 @@
         <span style="font-size:1.5em;  color: white;"> 검색어:<%= @searchText %> </span>
     </li>
     <li class="span4">
-      <button class=" col-sm-1 col-md-9"><%= link_to '도장 페이지 새로 만들기', new_post_path %>
+      <button class=" col-sm-1 col-md-9 btn-warning"><%= link_to '도장 페이지 새로 만들기', new_post_path %>
        </button>
     </li>
     <% @posts.each do |post| %>
@@ -34,9 +33,9 @@
             <ul>도장간단설명: <%= post.CourtSubIntro %>간단 설명</ul>
             <ul>위치(x,y): (<%= post.lat%>,<%= post.lng%>)</ul>
             <ul>생성날짜: (<%= post.Created%>)</ul>
-            <ul><%= link_to '보기', post %></ul>
-            <ul><%= link_to '변경', edit_post_path(post) %></ul>
-            <ul><%= link_to '삭제', post, method: :delete, data: { confirm: 'Are you sure?' } %></ul>
+            <ul class="btn btn-primary"><%= link_to '보기', post %></ul>
+            <ul class="btn btn-info"><%= link_to '변경', edit_post_path(post) %></ul>
+            <ul class="btn btn-danger"><%= link_to '삭제', post, method: :delete, data: { confirm: 'Are you sure?' } %></ul>
             </div>
         </li>
     <% end %>
@@ -47,16 +46,18 @@
         <input type="text" class="col-sm-1 col-md-9"id="SearchInput"  placeholder="도장을 검색하세요...">
          <div class="btn-group col-sm-1 col-md-1" role="group" aria-label="Basic example">
           <button type="submit" class="btn btn-primary mx-auto" id="SearchText">검색</button>
-          <button id="CategoryID1" type="button" class="btn btn-secondary">최신순</button>
-          <button id="CategoryID2" type="button" class="btn btn-secondary">거리순</button>
+          <button id="CategoryID1" type="button" class="btn btn-success">최신순</button>
+          <button id="CategoryID2" type="button" class="btn btn-warning">거리순</button>
           <button id="CategoryID3" type="button" class="btn btn-secondary">평점순</button>
         </div>
     </li>    
 </ul>
-<img class="blink-image rounded float-left" style="width:20%; height:11%" src="https://mblogthumb-phinf.pstatic.net/MjAxOTA2MTFfMjUz/MDAxNTYwMjQyMjg4Njk0.swxM6-8iKOXYXyAyinNUZTxOSPOkbYc76MQ4i1ELBDQg.XaSGE_3u9EhVOfoEG46WiI7d0ydQ61dCxJ23sXNYF9Eg.JPEG.wjdgns0253/%EB%8C%80%ED%95%99%EC%83%9D%ED%95%A0%EC%9D%B8%EC%9D%B4%EB%B2%A4%ED%8A%B8.jpg?type=w800">
+<ul>
 
 
-
+<img class="blink-image rounded float-left" style="width:25%; height:11%; padding: 0px 10px 10px 10px;" src="https://mblogthumb-phinf.pstatic.net/MjAxOTA2MTFfMjUz/MDAxNTYwMjQyMjg4Njk0.swxM6-8iKOXYXyAyinNUZTxOSPOkbYc76MQ4i1ELBDQg.XaSGE_3u9EhVOfoEG46WiI7d0ydQ61dCxJ23sXNYF9Eg.JPEG.wjdgns0253/%EB%8C%80%ED%95%99%EC%83%9D%ED%95%A0%EC%9D%B8%EC%9D%B4%EB%B2%A4%ED%8A%B8.jpg?type=w800">
+ 
+<img class="blink-image rounded float-left" style="width:25%; height:11%; padding: 0px 10px 10px 10px;" src="https://static.wixstatic.com/media/a27d24_308f9cd4f1134575a363cbc0a5b9ca93~mv2.jpg/v1/fit/w_768,h_960,al_c,q_80/file.jpg">
 
 <%# 지도 Control 영역 (제일 아래에 작성) %>
 <script>
