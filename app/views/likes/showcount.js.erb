@@ -1,2 +1,1 @@
-$('body > ul.thumbnails.col-sm-1.col-md-9.bg-dark > li:nth-child(5) > div > ul:nth-child(6) > a').html('<%= 999 %>')  <!-- @like_count-->
-$('body > div:nth-child(5) > ul > p:nth-child(2) > a').html('<%= @like.present? ? "♡"  : "♥" %>')
+$("li#post_<%= @likenum %> .like_count_btn > a").html('<%= @like.likecount %>')

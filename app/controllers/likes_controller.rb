@@ -25,6 +25,7 @@ class LikesController < ApplicationController
   end
   
   def showcount
-    
+    @like = Like.find_by(post_id: params[:post_id])
+    @likenum=params[:postid];
   end
 end

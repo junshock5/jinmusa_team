@@ -41,7 +41,6 @@
   <strong>liked_userslike:</strong>
   <%= @post.liked_users.count %>
 </p>
-
 <p>
   <%= link_to "#{post_liked_by_user?(@post, current_user) ? "♡"  : "♥" }", "/posts/#{@post.id}/likes", method: :post , remote: true %>
 </p>
@@ -58,6 +57,32 @@
         <li>시간표 및 요금:</li>
         <li>x: <%= @post.lat %></li>
         <li>y: <%= @post.lng %></li>
+        <p>
+        <strong>리뷰 목록</strong>
+          </p>
+          <div>
+            <table>
+              <thead>
+              <tr>
+                <th>리뷰내용</th>
+                <th>리뷰점수</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @post.reviews.each do | review | %>
+              <tr>
+               <td><%= review.ReviewContents %></td>
+               <td><%= review.ReviewScore %></td>
+              </tr>
+              </tbody>
+            <% end %>
+          </table>
+          </div>
+          <p>
+            <button type="button" class="btn btn-outline-info">
+            <%= link_to "리뷰쓰기", "/posts/#{@post.id}/reviews", method: :post %>
+            </button>
+          </p>
 </ul>
     
     </div> <!-- /container -->

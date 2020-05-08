@@ -24,19 +24,20 @@
 
     </li> 
     <% @posts.each do |post| %>
-        <li class="span4">
+        <li class="span4" id="post_<%=post.id%>">
             <div class="thumbnail col-sm-1 col-md-9">
             <%if post.image !=nil %>
-             
                  <%= image_tag post.image, :align=>"left", :style => "height: 70px; width: 20%;  display: block;" %> 
             <% else %>
                 <img src="https://placehold.it/300x200" align="left" alt="사진없음">
             <% end %>
+            
+            
             <ul>도장명: <%= post.CourtName %></ul>
             <ul>도장간단설명: <%= post.CourtSubIntro %>간단 설명</ul>
             <ul>위치(x,y): (<%= post.lat%>,<%= post.lng%>)</ul>
             <ul>생성날짜: (<%= post.Created%>)</ul>
-            <ul><%= link_to "좋아요 개수보기","/posts/#{post.id}/showlikes", method: :get , remote: true %></ul>
+            <ul class="like_count_btn"><%= link_to "좋아요 개수보기","/posts/#{post.id}/showlikes?postid=#{post.id}", method: :get , remote: true %></ul>
             <ul class="btn btn-primary"><%= link_to '보기', post %></ul>
             <ul class="btn btn-info"><%= link_to '변경', edit_post_path(post) %></ul>
             <ul class="btn btn-danger"><%= link_to '삭제', post, method: :delete, data: { confirm: 'Are you sure?' } %></ul>

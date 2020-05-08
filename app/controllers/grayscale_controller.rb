@@ -14,4 +14,7 @@ class GrayscaleController < ApplicationController
         @subway_time2 = subway2.map { |cur| cur.text }
   end
   
+  def usingterm
+  end
+  
 end

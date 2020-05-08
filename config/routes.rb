@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'reviews/new'
   resources :videos
   devise_for :users
   
@@ -26,7 +27,12 @@ Rails.application.routes.draw do
   get 'posts/:id' => 'posts#show'
   get 'posts/:post_id/showlikes' => 'likes#showcount'
   post 'posts/:post_id/likes' => 'likes#create'
-
+  get 'grayscale/usingterm'
+  
+  post 'posts/:post_id/reviews' => 'reviews#new'
+  get 'posts/:post_id/reviews' => 'reviews#new'
+  get 'reviews/new'
+  post 'reviews/:post_id' => 'reviews#create'
   
   get 'messages/create'
   get 'conversations/create'
