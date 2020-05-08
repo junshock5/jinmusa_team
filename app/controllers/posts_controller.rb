@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:edit, :update, :destroy, :update, :destroy, :create, :new, :paging]
-  
+  before_action :authenticate_user!, only: [:edit, :new, :destroy, :update, :destroy, :create,  :paging]
 
   # GET /posts
   # GET /posts.json
@@ -74,8 +73,11 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params);
     @post.Created = Time.now.getutc;
-    @post.UserId = current_user.id;
+    #@post.UserId = current_user.id;
     
+
+     # @post.user_id = user;
+  
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
@@ -129,6 +131,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:CourtCategoryId,:CourtName,:CountIntro,:CourtSubIntro,:Created,:Updated,:UserId,:ImageId,:TimeTableId,:file,:lat,:lng,:image,:file)
+      params.require(:post).permit(:CourtCategoryId,:CourtName,:CountIntro,:CourtSubIntro,:Created,:Updated,:UserId,:ImageId,:TimeTableId,:file,:lat,:lng,:image,:file,:UserId)
     end
 end

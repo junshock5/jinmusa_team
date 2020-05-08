@@ -17,10 +17,11 @@
         <span style="font-size:1.5em;  color: white;"> 검색어:<%= @searchText %> </span>
     </li>
     <li class="span4">
-        
-      <button class="loginlocation2 col-sm-1 col-md-9 btn-warning">
-      <%= link_to '도장 페이지 새로 만들기', new_post_path,remote: true, method: :post %>
-       </button>
+             
+      <%= link_to '도장 페이지 새로 만들기', new_post_path, :class => " col-sm-1 col-md-9 btn-warning" %>
+      <!--<button class="loginlocation2 col-sm-1 col-md-9 btn-warning">
+      <%= link_to '도장 페이지 새로 만들기', new_post_path,remote: true, method: :post %> -->
+
     </li> 
     <% @posts.each do |post| %>
         <li class="span4">

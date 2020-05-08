@@ -1,4 +1,15 @@
 <%= form_with(model: post, local: true) do |form| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
   <h4>도장 <b>기본 정보</b> 등록하기</h4>
     <div class="field">
@@ -48,9 +59,11 @@
       <%= form.label :timetable %>
       <%= form.file_field :TimeTableId, id: :TimeTableId %> 
     </div>
-    <br><br>
     
-  <div class="actions">
+    <%= form.hidden_field :UserId, value: current_user.id %>
+    <br>
+    
+  <div class="actions btn">
     <%= form.submit %>
   </div>
 <% end %>
