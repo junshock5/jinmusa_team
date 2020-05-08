@@ -37,6 +37,17 @@
 <ul>
 
 
+<p>
+  <strong>Like:</strong>
+  <%= @post.liked_users.count %>
+  <span><%= @post.liked_users.count %></span>
+</p>
+
+<p>
+  <%= link_to "#{post_liked_by_user?(@post, current_user) ? "♡"  : "♥" }", "/posts/#{@post.id}/likes", method: :post , remote: true %>
+</p>
+
+
    <!--<% if @post.file !=nil %> 
          <%= video_tag @post.file, :size => "320x240", :controls => true %>
        <% end %>-->

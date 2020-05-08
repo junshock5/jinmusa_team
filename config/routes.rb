@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   #get 'posts/index'
   get 'posts/new'
   get 'posts/:id' => 'posts#show'
-  
+  post 'posts/:post_id/likes' => 'likes#create'
   #get 'posts/show'
   
   

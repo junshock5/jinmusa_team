@@ -11,15 +11,17 @@
         <button onclick="showMarkers()">마커 보이기</button>
     </li>
     <li class="span4">
-        <span id="loginlocation" style="font-size:1.5em;  color: white;"> 현재 접속한 위치 정보(x,y):</span>
+        <span class="loginlocation1" style="font-size:1.5em;  color: white;"> 현재 접속한 위치 정보(x,y):</span>
     </li>
     <li class="span4">
         <span style="font-size:1.5em;  color: white;"> 검색어:<%= @searchText %> </span>
     </li>
     <li class="span4">
-      <button class=" col-sm-1 col-md-9 btn-warning"><%= link_to '도장 페이지 새로 만들기', new_post_path %>
+        
+      <button class="loginlocation2 col-sm-1 col-md-9 btn-warning">
+      <%= link_to '도장 페이지 새로 만들기', new_post_path,remote: true, method: :post %>
        </button>
-    </li>
+    </li> 
     <% @posts.each do |post| %>
         <li class="span4">
             <div class="thumbnail col-sm-1 col-md-9">
@@ -62,7 +64,7 @@
 
 <%# 지도 Control 영역 (제일 아래에 작성) %>
 <script>
-var locPosition;
+var locPosition2;
 $(function(){
     var CategoryID=0;
   $('#SearchText').click(function(){
@@ -89,16 +91,20 @@ if (navigator.geolocation) {
         
         var locPosition = new daum.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
             message = '<div style="padding:5px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다
-        
+        locPosition2=locPosition;
+
         // 마커와 인포윈도우를 표시합니다
         //displayMarker(locPosition, message);
+        document.querySelector('.loginlocation1').innerHTML =locPosition;
+        //document.querySelector('.loginlocation2').val =locPosition;
+        //document.querySelectorAll(".loginlocation").innerHTML =locPosition;
         
-        document.getElementById('loginlocation').innerHTML +=locPosition;
-            
+
       });
     
 } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
     
+    //var locPosition = new daum.maps.LatLng(33.450701, 126.570667),    
     var locPosition = new daum.maps.LatLng(33.450701, 126.570667),    
         message = 'geolocation을 사용할수 없어요..'
         
@@ -106,9 +112,10 @@ if (navigator.geolocation) {
 }
 
 
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
+var mapContainer = document.getElementById('map'); // 지도를 표시할 div  
     mapOption = { 
         center: new daum.maps.LatLng(37.411368205075355, 127.12877009101574), // 지도의 중심좌표
+        //center: locPosition2,
         level: 1 // 지도의 확대 레벨
     };
  
