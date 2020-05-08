@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
   get 'posts/new'
   get 'posts/:id' => 'posts#show'
+  get 'posts/:post_id/showlikes' => 'likes#showcount'
   post 'posts/:post_id/likes' => 'likes#create'
 
   
