@@ -1,32 +1,76 @@
-
-      <!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="container">
       <div class="jumbotron">
-        <div class="container">
+        <h1 class="display-3" align="center"><%= @post.CourtName %></h1>
+                <% if @post.file !=nil %>
+         <div align="center">
+                  <%= video_tag @post.file, :size => "640x480", :controls => true %>
+                  </div>
+         <% end %>
+        <p class="lead"><%= @post.CourtSubIntro %></p>
+        <p><%= link_to "후기쓰기", "/posts/#{@post.id}/reviews", method: :post , :class => "btn btn-lg btn-success"%></p>
+        <p>
+  <strong>like:</strong>
+  <!--<%= @post.liked_users.count %> -->
+
+  <%= link_to "#{post_liked_by_user?(@post, current_user) ? "♡"  : "♥" }", "/posts/#{@post.id}/likes", method: :post , remote: true %>
+</p>
+      </div>
+
+       <div class="row">
+  <div class="col-md-4">
+    <div class="thumbnail">
+      <a href="/w3images/lights.jpg">
           <% if @post.image !=nil %> 
                  <%= image_tag @post.image,  :style =>"height: 120px; width: 20%;  display: block;" %> 
           <% end %>
-          <h1 class="display-3">도장명: <%= @post.CourtName %></h1>
-          <p><%= @post.CourtSubIntro %></p>
-          <p><a class="btn btn-primary btn-lg" href="#" role="button">후기쓰기</a></p>
+        <div class="caption">
+          <p>관장 이력...</p>
         </div>
-      </div>
+      </a>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="thumbnail">
+      <a href="/w3images/nature.jpg">
+          <% if @post.image !=nil %> 
+                 <%= image_tag @post.image,  :style =>"height: 120px; width: 20%;  display: block;" %> 
+          <% end %>
+        <div class="caption">
+          <p>사범 이력...</p>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="thumbnail">
+      <a href="/w3images/fjords.jpg">
+          <% if @post.image !=nil %> 
+                 <%= image_tag @post.image,  :style =>"height: 120px; width: 20%;  display: block;" %> 
+          <% end %>
+        <div class="caption">
+          <p>사범 이력...</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
 
       <div class="container">
         <!-- Example row of columns -->
         <div class="row">
           <div class="col-md-4">
-            <h2>특징1</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <h2><%= @post.CountIntro %></h2>
+            <p><%= @post.CourtSubIntro %></p>
             <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
           </div>
           <div class="col-md-4">
-            <h2>특징2</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <h2><%= @post.CountIntro %></h2>
+            <p><%= @post.CourtSubIntro %></p>
             <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
           </div>
           <div class="col-md-4">
-            <h2>특징3</h2>
-            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+            <h2><%= @post.CountIntro %></h2>
+            <p><%= @post.CourtSubIntro %></p>
             <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
           </div>
         </div>
@@ -34,58 +78,84 @@
       </div> <!-- /container -->
     <div class="container">
 
+    
+    </div> <!-- /container -->
+
+
+
+    <div id="map" style="width:100%;height:350px;"></div>
+    <p><em>지도를 클릭해서 정확한 좌표를 얻어내세요!</em></p>
+  
+  
+  
+  
+
 <ul>
+     
 
-<p>
-  <strong>like:</strong>
-  <strong>liked_userslike:</strong>
-  <%= @post.liked_users.count %>
-</p>
-<p>
-  <%= link_to "#{post_liked_by_user?(@post, current_user) ? "♡"  : "♥" }", "/posts/#{@post.id}/likes", method: :post , remote: true %>
-</p>
-
-   <!--<% if @post.file !=nil %> 
-         <%= video_tag @post.file, :size => "320x240", :controls => true %>
-       <% end %>-->
-        <li>이름:</li>
-        <li>설명:</li>
-        <li>전화번호:</li>
-        <li>♡ 관심도장등록</li>
-        <li>문의하기</li>
-        <li>강사진 소개:</li>
-        <li>시간표 및 요금:</li>
-        <li>x: <%= @post.lat %></li>
-        <li>y: <%= @post.lng %></li>
-        <p>
-        <strong>리뷰 목록</strong>
-          </p>
-          <div>
-            <table>
-              <thead>
-              <tr>
-                <th>리뷰내용</th>
-                <th>리뷰점수</th>
-              </tr>
-              </thead>
-              <tbody>
-              <% @post.reviews.each do | review | %>
-              <tr>
-               <td><%= review.ReviewContents %></td>
-               <td><%= review.ReviewScore %></td>
-              </tr>
-              </tbody>
-            <% end %>
-          </table>
-          </div>
+          
+     <% @post.reviews.each do |review| %>
+            <li >리뷰내용: <%= review.ReviewContents %></li>
+            <li >점수: <%= review.ReviewScore  %></li>
+        </li>
+    <% end %>    
+          
+ 
           <p>
-            <button type="button" class="btn btn-outline-info">
+            <button type="button" class="btn btn-primary btn-lg">
             <%= link_to "리뷰쓰기", "/posts/#{@post.id}/reviews", method: :post %>
             </button>
           </p>
+        
 </ul>
+
+
+
+
+<script>
+function func1() {
+console.log(location.toString(), location.href);
+}
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = { 
+        <% if @post.lat == nil %>
+            center: new daum.maps.LatLng(37.411368205075355, 127.12877009101574), // 최초 글 작성 시 지도의 중심좌표
+        <% else %>
+            center: new daum.maps.LatLng(<%= @post.lat %>, <%= @post.lng %>), // 수정 시 보여지는 위치
+        <% end %>
+        level: 2 // 지도의 확대 레벨
+    };
+ 
+var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+ 
+// 지도를 클릭한 위치에 표출할 마커입니다
+var marker = new daum.maps.Marker({ 
+    // 지도 중심좌표에 마커를 생성합니다 
+    position: map.getCenter() 
+}); 
+// 지도에 마커를 표시합니다
+marker.setMap(map);
+ 
+// 지도에 클릭 이벤트를 등록합니다
+// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+daum.maps.event.addListener(map, 'click', function(mouseEvent) {        
     
-    </div> <!-- /container -->
+    // 클릭한 위도, 경도 정보를 가져옵니다 
+    var latlng = mouseEvent.latLng; 
+    
+    // 마커 위치를 클릭한 위치로 옮깁니다
+    marker.setPosition(latlng);
+    
+    // X축 좌표값을 얻어냄 
+    var map_x = document.getElementById('lat'); 
+    map_x.innerHTML = latlng.getLat();
+    
+    // Y축 좌표값을 얻어냄
+    var map_y = document.getElementById('lng'); 
+    map_y.innerHTML = latlng.getLng();
+    
+});
+</script>
 
 
         

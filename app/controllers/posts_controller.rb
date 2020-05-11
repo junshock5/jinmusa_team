@@ -55,6 +55,7 @@ class PostsController < ApplicationController
   
   # GET /posts/show
   def show
+     @like = Like.find_by(post_id: params[:id])
     @post = Post.find(params[:id])
   end
 

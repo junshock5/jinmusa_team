@@ -1,4 +1,36 @@
-<h1 class="display-4 text-center">도장 리뷰 쓰기</h1>
- <h3 class="text-center">당신의 후기를 공유해주세요!</h3>
- <br><br>
-     <%= render 'form', post: @review %>
+<body>
+<div class="page-wrapper bg-blue p-t-100 p-b-100 font-robo">
+<div class="wrapper wrapper--w680">
+<div class="card card-1">
+<div class="card-body">
+<h2 class="title">도장 리뷰 쓰기</h2>
+<h3 class="subtitle">당신의 후기를 공유해주세요!</h2>
+<br><br>
+ <form action="/reviews/<%= @post %>" method="POST" >
+   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+       <div class="input-group">
+       <input class="input--style-1" type="text" placeholder="한 줄 후기" name="ReviewContents" rows="3">
+       </div>
+       <div class="input-group">
+       <div class="rs-select2 js-select-simple select--no-search">
+       <select name="class" id="ReviewScore" name="ReviewScore">
+       <option disabled="disabled" selected="selected">만족도 점수</option>
+       <option>0점</option>
+       <option>1점</option>
+       <option>2점</option>
+       <option>3점</option>
+       <option>4점</option>
+       <option>5점</option>
+       </select>
+       <div class="select-dropdown"></div>
+       </div>
+       </div>
+<div class="p-t-20">
+<button class="btn btn--radius btn--green" type="submit">등록하기</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</body>
